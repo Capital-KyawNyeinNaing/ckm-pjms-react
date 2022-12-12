@@ -1,5 +1,5 @@
+import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
-import { forwardRef } from 'react';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
@@ -63,6 +63,8 @@ const MainCard = forwardRef(
     );
   }
 );
+
+MainCard.displayName = 'MainCard';
 
 MainCard.propTypes = {
   border: PropTypes.bool,

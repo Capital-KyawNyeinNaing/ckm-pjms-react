@@ -1,5 +1,5 @@
+import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
-import { forwardRef } from 'react';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
@@ -47,6 +47,8 @@ const SubCard = forwardRef(({ children, content, contentClass, darkTitle, second
     </Card>
   );
 });
+
+SubCard.displayName = 'SubCard';
 
 SubCard.propTypes = {
   children: PropTypes.node,
