@@ -1,17 +1,16 @@
-import React from 'react';
 import { useSelector } from 'react-redux';
 
 import { ThemeProvider } from '@mui/material/styles';
 import { CssBaseline, StyledEngineProvider } from '@mui/material';
 
-// routing
-import Routes from 'routes';
+// layout
+import Layout from 'layout';
 
 // defaultTheme
-import themes from 'themes';
+import themes from 'components/Themes';
 
 // project imports
-import NavigationScroll from 'layout/NavigationScroll';
+import NavigationScroll from 'hooks/useNavigationScroll';
 
 // ==============================|| APP ||============================== //
 
@@ -23,7 +22,7 @@ const App = () => {
       <ThemeProvider theme={themes(customization)}>
         <CssBaseline />
         <NavigationScroll>
-          <Routes />
+          <Layout />
         </NavigationScroll>
       </ThemeProvider>
     </StyledEngineProvider>

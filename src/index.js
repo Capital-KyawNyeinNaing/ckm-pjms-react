@@ -1,4 +1,3 @@
-import React from 'react';
 import { createRoot } from 'react-dom/client';
 
 // third party
@@ -11,7 +10,8 @@ import App from 'App';
 import { store } from 'store';
 
 // style + assets
-import 'assets/scss/style.scss';
+import 'components/assets/styles/input.css';
+import 'components/assets/scss/style.scss';
 import config from './config';
 
 // ==============================|| REACT DOM RENDER  ||============================== //

@@ -4,7 +4,7 @@
     "browser": true,
     "es2021": true
   },
-  "extends": ["eslint:recommended", "plugin:react/jsx-runtime", "plugin:react/recommended", "plugin:prettier/recommended", "prettier"],
+  "extends": ["prettier", "plugin:react/jsx-runtime", "plugin:jsx-a11y/recommended", "plugin:react-hooks/recommended"],
   "settings": {
     "import/resolver": {
       "node": {
@@ -12,13 +12,8 @@
       }
     }
   },
+  "parser": "@babel/eslint-parser",
   "parserOptions": {
-    "parser": "@babel/eslint-parser",
-    "requireConfigFile": false,
-    "sourceType": "module",
-    "babelOptions": {
-      "presets": ["@babel/preset-react"]
-    },
     "ecmaFeatures": {
       "experimentalObjectRestSpread": true,
       "impliedStrict": true
@@ -40,10 +35,9 @@
     "prefer-destructuring": 0,
     "no-shadow": 0,
     "no-unused-vars": [
-      1,
+      0,
       {
-        "ignoreRestSiblings": false,
-        "varsIgnorePattern": "React"
+        "ignoreRestSiblings": false
       }
     ],
     "prettier/prettier": [
