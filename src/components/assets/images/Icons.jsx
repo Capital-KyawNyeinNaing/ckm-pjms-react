@@ -2,7 +2,8 @@ import styled from 'styled-components';
 import { RxDashboard } from 'react-icons/rx';
 import { FaTasks } from 'react-icons/fa';
 import { HiUsers } from 'react-icons/hi';
-import { TbDashboard } from 'react-icons/tb';
+import { TbDashboard, TbTypography } from 'react-icons/tb';
+import { IoColorPaletteOutline } from 'react-icons/io5';
 
 export const DashboardIcon = (props) => {
   return (
@@ -32,6 +33,22 @@ export const HiUsersIcon = (props) => {
   return (
     <IconWrap {...props}>
       <HiUsers />
+    </IconWrap>
+  );
+};
+
+export const TbTypographyIcon = (props) => {
+  return (
+    <IconWrap {...props}>
+      <TbTypography />
+    </IconWrap>
+  );
+};
+
+export const PaletteIcon = (props) => {
+  return (
+    <IconWrap {...props}>
+      <IoColorPaletteOutline />
     </IconWrap>
   );
 };

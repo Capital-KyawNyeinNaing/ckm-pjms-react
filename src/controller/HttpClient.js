@@ -1,12 +1,15 @@
 import axios from 'axios';
+import { getAuth } from 'service';
 
 const client = axios.create();
+const auth = getAuth();
 
 client.interceptors.request.use(
   async (config) => {
     config.baseURL = process.env.REACT_APP_API_ENDPOINT;
     config.headers['Content-Type'] = 'application/json';
     config.headers['Accept'] = 'application/json';
+    config.headers['Authorization'] = `Bearer ${auth.token}`;
     return config;
   },
   (error) => {

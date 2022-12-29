@@ -7,25 +7,16 @@ import Loadable from 'components/ui-component/Loadable';
 const DashboardPage = Loadable(lazy(() => import('pages/dashboard')));
 const UtilsTypography = Loadable(lazy(() => import('pages/utilities/Typography')));
 const UtilsColor = Loadable(lazy(() => import('pages/utilities/Color')));
-const UtilsShadow = Loadable(lazy(() => import('pages/utilities/Shadow')));
-const UtilsMaterialIcons = Loadable(lazy(() => import('pages/utilities/MaterialIcons')));
-const UtilsTablerIcons = Loadable(lazy(() => import('pages/utilities/TablerIcons')));
 
+// page imports
 const LoginPage = Loadable(lazy(() => import('pages/auth/Login')));
 const RegisterPage = Loadable(lazy(() => import('pages/auth/register')));
+const MemberListPage = Loadable(lazy(() => import('pages/members')));
+const CreateMemberPage = Loadable(lazy(() => import('pages/members/create-member')));
 
 export const useRouter = () => {
   return [
-    {
-      path: '/',
-      element: <DashboardPage />,
-      protect: true
-    },
-    {
-      path: '/projects',
-      element: <UtilsTypography />,
-      protect: true
-    },
+    // auth
     {
       path: '/login',
       element: <LoginPage />
@@ -33,6 +24,38 @@ export const useRouter = () => {
     {
       path: '/register',
       element: <RegisterPage />
+    },
+    {
+      path: '/',
+      element: <DashboardPage />,
+      protect: true
+    },
+
+    // pages
+    {
+      path: '/projects',
+      element: <UtilsTypography />,
+      protect: true
+    },
+    {
+      path: '/members',
+      element: <MemberListPage />,
+      protect: true
+    },
+    {
+      path: '/member/create',
+      element: <CreateMemberPage />,
+      protect: true
+    },
+
+    // typo
+    {
+      path: '/utils/util-typography',
+      element: <UtilsTypography />
+    },
+    {
+      path: '/utils/util-color',
+      element: <UtilsColor />
     }
   ];
 };

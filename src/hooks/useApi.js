@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { controller } from '../controller';
 
 const useApi = (apiEndpoint) => {
@@ -6,22 +6,32 @@ const useApi = (apiEndpoint) => {
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  const request = async (...data) => {
-    setIsLoading(true);
-    try {
-      const result = await controller(apiEndpoint, ...data);
-      setResponseData(result.data);
-      setError('');
-      return result;
-    } catch (err) {
-      setError(err.message || 'Unexpected Error!');
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  // call back function
+  const request = useCallback(
+    async (...data) => {
+      setIsLoading(true);
+      try {
+        // fetch data
+        const result = await controller(apiEndpoint, ...data);
+        setResponseData(result.data);
+        setError('');
+        return result;
+      } catch (err) {
+        setError(err.message || 'Unexpected Error!');
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    [apiEndpoint]
+  );
+
+  useEffect(() => {
+    request();
+  }, [request]);
 
   return {
     responseData,
+    setResponseData,
     error,
     isLoading,
     request

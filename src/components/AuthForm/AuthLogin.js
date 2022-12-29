@@ -11,7 +11,6 @@ import {
   Box,
   Button,
   Checkbox,
-  Divider,
   FormControl,
   FormControlLabel,
   FormHelperText,
@@ -52,6 +51,7 @@ const Login = ({ ...others }) => {
   const navigate = useNavigate();
   const auth = getAuth();
 
+  // form
   const {
     register,
     handleSubmit,
@@ -84,6 +84,7 @@ const Login = ({ ...others }) => {
         auth_data: res.data
       });
       navigate('/');
+      window.location.reload();
     } else {
       setErrorMsg(res.response.data.error);
       logout();
@@ -108,8 +109,8 @@ const Login = ({ ...others }) => {
 
       <form noValidate onSubmit={handleSubmit(onSubmit)} {...others}>
         <FormControl fullWidth error={Boolean(errors?.email)} sx={{ ...theme.typography.customInput }}>
-          <InputLabel htmlFor="outlined-adornment-email-login">Email Address / Username</InputLabel>
-          <OutlinedInput id="outlined-adornment-email-login" type="email" label="Email Address / Username" {...register('email')} />
+          <InputLabel htmlFor="outlined-adornment-email-login">Email Address</InputLabel>
+          <OutlinedInput id="outlined-adornment-email-login" type="email" label="Email Address" {...register('email')} />
           {errors?.email && (
             <FormHelperText error id="standard-weight-helper-text-email-login">
               {errors.email.message}

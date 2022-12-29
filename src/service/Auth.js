@@ -35,4 +35,5 @@ export const logout = () => {
   localStorage.removeItem('auth_data');
   localStorage.removeItem('refresh');
   localStorage.removeItem('user_info');
+  window.location.reload();
 };

@@ -5,8 +5,8 @@ import { useTheme } from '@mui/material/styles';
 import { Divider, Grid, Stack, Typography, useMediaQuery } from '@mui/material';
 
 // project imports
-import AuthWrapper1 from '../AuthWrapper1';
-import AuthCardWrapper from '../AuthCardWrapper';
+import AuthWrapper1 from './AuthWrapper1';
+import AuthCardWrapper from './AuthCardWrapper';
 import AuthLogin from 'components/AuthForm/AuthLogin';
 import AuthFooter from 'components/ui-component/cards/AuthFooter';
 

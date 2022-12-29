@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 
-const { ProjectIcon, FaTasksIcon, HiUsersIcon, DashboardIcon } = require('./Icons');
+const { ProjectIcon, FaTasksIcon, HiUsersIcon, DashboardIcon, TbTypographyIcon, PaletteIcon } = require('./Icons');
 
 const ImageWrap = (props) => {
   const obj = props?.sx;
@@ -27,18 +27,18 @@ const ImageComponent = (props) => {
   switch (props.imageType) {
     case 'image':
       return <ImageWrap {...props} />;
-
     case 'dashboard':
       return <DashboardIcon {...props} />;
-
     case 'project':
       return <ProjectIcon {...props} />;
-
     case 'task':
       return <FaTasksIcon {...props} />;
-
     case 'member':
       return <HiUsersIcon {...props} />;
+    case 'typo':
+      return <TbTypographyIcon {...props} />;
+    case 'palette':
+      return <PaletteIcon {...props} />;
 
     default:
       return null;

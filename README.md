@@ -116,3 +116,12 @@ To report a bug, please submit an [issue](https://github.com/codedthemes/berry-f
  - [Dribbble](https://dribbble.com/codedthemes)
  - [Facebook](https://www.facebook.com/codedthemes)
  - [Twitter](https://twitter.com/codedthemes)
+
+
+redmi note 12 pro price
+ram 8
+memory 128
+offecial
+color - black u ml
+promo shi ma shi ask
+packaging မဖောက်ပဲ ရမရ ဘာတွေရနိုင်မလဲ
