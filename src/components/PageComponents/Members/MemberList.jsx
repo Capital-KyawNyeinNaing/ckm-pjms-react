@@ -8,7 +8,7 @@ import Select from 'react-select';
 import { Button, Grid, Typography } from '@mui/material';
 import AnimateButton from 'components/ui-component/extended/AnimateButton';
 
-const MemberPage = (props) => {
+const MemberListPage = (props) => {
   return (
     <div className="px-4 sm:px-6 lg:px-8">
       <div className="sm:flex sm:items-center">
@@ -89,9 +89,9 @@ const MemberPage = (props) => {
                         <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{data.phoneNumber}</td>
                         <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{data.phoneNumber}</td>
                         <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                          <a href="#" className="text-indigo-600 hover:text-indigo-900">
+                          <Link to={`/member/edit/${data._id}`} className="text-indigo-600 hover:text-indigo-900">
                             Edit<span className="sr-only">, {data.name}</span>
-                          </a>
+                          </Link>
                         </td>
                       </tr>
                     ))}
@@ -111,8 +111,8 @@ const MemberPage = (props) => {
   );
 };
 
-MemberPage.propTypes = {
+MemberListPage.propTypes = {
   memberData: PropTypes.array
 };
 
-export default MemberPage;
+export default MemberListPage;

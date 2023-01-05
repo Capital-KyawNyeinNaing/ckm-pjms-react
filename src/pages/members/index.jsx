@@ -5,7 +5,7 @@ import useApi from 'hooks/useApi';
 import { apiRoutes } from 'controller/ApiRoutes';
 
 // project imports
-import { MemberPage } from 'components/PageComponents';
+import { MemberListPage } from 'components/PageComponents';
 
 const Member = () => {
   const { request: memberRequest, responseData: memberData } = useApi(apiRoutes.member);
@@ -46,7 +46,7 @@ const Member = () => {
 
   console.log(result);
 
-  return <MemberPage memberData={memberData?.data} />;
+  return <MemberListPage memberData={memberData?.data} />;
 };
 
 export default Member;

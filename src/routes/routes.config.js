@@ -47,6 +47,11 @@ export const useRouter = () => {
       element: <CreateMemberPage />,
       protect: true
     },
+    {
+      path: '/member/edit/:id',
+      element: <CreateMemberPage />,
+      protect: true
+    },
 
     // typo
     {

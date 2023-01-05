@@ -1,16 +1,22 @@
 import React from 'react';
+import { useNavigate, useParams } from 'react-router';
 import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 
-// third party imports
-// import Select from 'react-select';
-
 // mui imports
 import { Button, Divider, FormControl, FormHelperText, InputLabel, MenuItem, Select, TextField, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import AnimateButton from 'components/ui-component/extended/AnimateButton';
+
+// api
+import useApi from 'hooks/useApi';
+import { apiRoutes } from 'controller/ApiRoutes';
+
+// service
+import { getAuth } from 'service';
+import { useEffect } from 'react';
 
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
@@ -26,8 +32,14 @@ const schema = yup.object().shape({
 });
 
 const MemberPage = (props) => {
-  const [age, setAge] = React.useState('');
   const theme = useTheme();
+  const auth = getAuth();
+  const navigate = useNavigate();
+  const param = useParams();
+
+  // api
+  const { request: createMemberRequest } = useApi(apiRoutes.createmember);
+  const { request: memberRequest, responseData: memberDataById } = useApi(`${apiRoutes.member}/${param?.id}`);
 
   // form
   const {
@@ -35,18 +47,29 @@ const MemberPage = (props) => {
     handleSubmit,
     formState: { errors }
   } = useForm({
+    mode: 'onChange',
     resolver: yupResolver(schema)
+    // defaultValues: {
+    //   name: memberDataById?
+    // }
   });
 
-  const handleChange = (event) => {
-    setAge(event.target.value);
-  };
-
   const onSubmit = async (data) => {
-    console.log(data);
+    const postData = {
+      ...data,
+      companyId: auth.data.company._id
+    };
+    const res = await createMemberRequest(postData);
+    if (res?.data?.status === 'success') {
+      navigate('/members');
+    }
   };
 
-  console.log(errors);
+  useEffect(() => {
+    memberRequest();
+  }, [memberRequest]);
+
+  console.log(memberDataById);
 
   return (
     <form className="space-y-8 divide-y divide-gray-200" onSubmit={handleSubmit(onSubmit)}>
@@ -77,9 +100,8 @@ const MemberPage = (props) => {
                   label="Fill name"
                   defaultValue=""
                   variant="filled"
-                  required
-                  error
-                  helperText="Incorrect entry."
+                  error={errors?.name ? true : false}
+                  helperText={errors?.name ? errors?.name?.message : ''}
                   {...register('name')}
                 />
               </div>
@@ -96,9 +118,8 @@ const MemberPage = (props) => {
                   label="Fill email address"
                   defaultValue=""
                   variant="filled"
-                  required
-                  error
-                  helperText="Incorrect entry."
+                  error={errors?.email ? true : false}
+                  helperText={errors?.email ? errors?.email?.message : ''}
                   {...register('email')}
                 />
               </div>
@@ -115,9 +136,8 @@ const MemberPage = (props) => {
                   label="Fill phone number"
                   defaultValue=""
                   variant="filled"
-                  required
-                  error
-                  helperText="Incorrect entry."
+                  error={errors?.phoneNumber ? true : false}
+                  helperText={errors?.phoneNumber ? errors?.phoneNumber?.message : ''}
                   {...register('phoneNumber')}
                 />
               </div>
@@ -128,7 +148,7 @@ const MemberPage = (props) => {
                 Select Project
               </label>
               <div className="mt-1 sm:col-span-2 sm:mt-0">
-                <FormControl variant="filled" sx={{ m: 1, minWidth: 120 }} error required>
+                <FormControl variant="filled" sx={{ m: 1, minWidth: 120 }} error={errors?.projectId ? true : false}>
                   <InputLabel id="demo-simple-select-filled-label">Select Project</InputLabel>
                   <Select
                     className="w-[512px]"
@@ -146,7 +166,7 @@ const MemberPage = (props) => {
                         </MenuItem>
                       ))}
                   </Select>
-                  <FormHelperText>Error</FormHelperText>
+                  {errors?.projectId && <FormHelperText>{errors?.projectId?.message}</FormHelperText>}
                 </FormControl>
               </div>
             </div>
@@ -156,7 +176,7 @@ const MemberPage = (props) => {
                 Select Role
               </label>
               <div className="mt-1 sm:col-span-2 sm:mt-0">
-                <FormControl variant="filled" sx={{ m: 1, minWidth: 120 }} error required>
+                <FormControl variant="filled" sx={{ m: 1, minWidth: 120 }} error={errors?.roleId ? true : false}>
                   <InputLabel id="demo-simple-select-filled-label">Select Role</InputLabel>
                   <Select
                     className="w-[512px]"
@@ -174,7 +194,7 @@ const MemberPage = (props) => {
                         </MenuItem>
                       ))}
                   </Select>
-                  <FormHelperText>Error</FormHelperText>
+                  {errors?.roleId && <FormHelperText>{errors?.roleId?.message}</FormHelperText>}
                 </FormControl>
               </div>
             </div>

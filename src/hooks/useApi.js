@@ -25,10 +25,6 @@ const useApi = (apiEndpoint) => {
     [apiEndpoint]
   );
 
-  useEffect(() => {
-    request();
-  }, [request]);
-
   return {
     responseData,
     setResponseData,

@@ -8,13 +8,6 @@ const pages = {
   type: 'group',
   children: [
     {
-      id: 'project',
-      title: 'Projects',
-      type: 'item',
-      url: '/projects',
-      icon: 'project'
-    },
-    {
       id: 'task',
       title: 'Tasks',
       type: 'item',
